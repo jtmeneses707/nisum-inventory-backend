@@ -1,6 +1,6 @@
 package com.ascend.components.services;
 
-import com.ascend.components.entities.Product;
+import com.ascend.components.entities.Products;
 import com.ascend.components.exception.ItemNotFoundException;
 import com.ascend.components.repositories.ProductsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +15,13 @@ public class ProductsServiceImpl implements ProductsService {
     ProductsRepository repo;
 
     @Override
-    public List<Product> getAll(){
-        List<Product> pList = repo.findAll();
+    public List<Products> getAll(){
+        List<Products> pList = repo.findAll();
         return pList;
     }
 
     @Override
-    public Product get(String upc) {
+    public Products get(String upc) {
         var match = repo.findById(upc);
 
         if (match.isEmpty()) {
@@ -32,8 +32,8 @@ public class ProductsServiceImpl implements ProductsService {
     }
 
     @Override
-    public Product createProduct(Product p){
-        Product prod = repo.save(p);
+    public Products createProduct(Products p){
+        Products prod = repo.save(p);
         return prod;
     }
 

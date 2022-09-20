@@ -1,15 +1,15 @@
 package com.ascend.components.services;
 
-import com.ascend.components.entities.Product;
+import com.ascend.components.entities.Products;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public interface ProductsService {
-    List<Product> getAll();
+    List<Products> getAll();
 
-    Product get(String upc);
+    Products get(String upc);
 
-    Product createProduct(Product p);
+    Products createProduct(Products p);
 }

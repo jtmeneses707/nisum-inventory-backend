@@ -1,6 +1,6 @@
 package com.ascend.components.controller;
 
-import com.ascend.components.entities.Product;
+import com.ascend.components.entities.Products;
 import com.ascend.components.services.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,9 +10,11 @@ import java.util.HashMap;
 import java.util.Map;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin
-@RequestMapping("/api") // <-- this good?
+@RequestMapping("/api") // <--- this good?
 public class ProductsController {
 
     @Autowired
@@ -22,17 +24,18 @@ public class ProductsController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("{upc}")
-    public Map<String, Product> getProduct(@PathVariable String upc) {
-        var response = new HashMap<String, Product>();
+    public Map<String, Products> getProduct(@PathVariable String upc) {
+        var response = new HashMap<String, Products>();
         var product = service.get(upc);
         response.put("product", product);
         return response;
     }
 
+
     @PostMapping("/products/create")
     @ResponseBody
-    public Product addProduct(@RequestBody Product p){
-        Product response = service.createProduct(p);
+    public Products addProduct(@RequestBody Products p){
+        Products response = service.createProduct(p);
         return response;
     }
 }

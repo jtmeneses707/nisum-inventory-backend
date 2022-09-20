@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Table(name = "products")
 @Entity
-public class Product {
+public class Products {
     @Id
     String UPC;
 

@@ -32,7 +32,6 @@ public class ProductsController {
     @PostMapping("create")
     @ResponseBody
     public Products addProduct(@RequestBody Products p){
-        Products response = service.createProduct(p);
-        return response;
+        return service.createProduct(p);
     }
 }

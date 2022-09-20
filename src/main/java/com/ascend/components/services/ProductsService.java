@@ -7,7 +7,8 @@ import java.util.List;
 
 @Service
 public interface ProductsService {
-    List<Products> getAll();
 
     Products createProduct(Products p);
+
+    List<Products> getAll();
 }

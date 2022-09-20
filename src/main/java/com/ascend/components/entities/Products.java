@@ -9,8 +9,6 @@ import javax.persistence.Table;
 public class Products {
 
     @Id
-    int ProductID;
-
     String UPC;
 
     String ProdName;
@@ -30,14 +28,6 @@ public class Products {
     int ReservedStock;
 
     int ShippedStock;
-
-    public int getProductID() {
-        return ProductID;
-    }
-
-    public void setProductID(int productID) {
-        ProductID = productID;
-    }
 
     public String getUPC() {
         return UPC;
@@ -122,17 +112,16 @@ public class Products {
     @Override
     public String toString() {
         return "Products{" +
-                "ProductID=" + ProductID +
-                ", UPC='" + UPC + '\'' +
-                ", ProdName='" + ProdName + '\'' +
-                ", Brand='" + Brand + '\'' +
-                ", ProdDesc='" + ProdDesc + '\'' +
-                ", Category='" + Category + '\'' +
-                ", PricePerUnit=" + PricePerUnit +
-                ", ImageURL='" + ImageURL + '\'' +
-                ", AvailableStock=" + AvailableStock +
-                ", ReservedStock=" + ReservedStock +
-                ", ShippedStock=" + ShippedStock +
-                '}';
+            "UPC='" + UPC + '\'' +
+            ", ProdName='" + ProdName + '\'' +
+            ", Brand='" + Brand + '\'' +
+            ", ProdDesc='" + ProdDesc + '\'' +
+            ", Category='" + Category + '\'' +
+            ", PricePerUnit=" + PricePerUnit +
+            ", ImageURL='" + ImageURL + '\'' +
+            ", AvailableStock=" + AvailableStock +
+            ", ReservedStock=" + ReservedStock +
+            ", ShippedStock=" + ShippedStock +
+            '}';
     }
 }

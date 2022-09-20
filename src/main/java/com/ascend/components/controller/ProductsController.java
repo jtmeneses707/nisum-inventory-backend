@@ -8,10 +8,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/products") // <-- this good?
+@RequestMapping("/api") // <-- this good?
 public class ProductsController {
 
     @Autowired
@@ -25,6 +26,13 @@ public class ProductsController {
         var response = new HashMap<String, Product>();
         var product = service.get(upc);
         response.put("product", product);
+        return response;
+    }
+
+    @PostMapping("/products/create")
+    @ResponseBody
+    public Product addProduct(@RequestBody Product p){
+        Product response = service.createProduct(p);
         return response;
     }
 }

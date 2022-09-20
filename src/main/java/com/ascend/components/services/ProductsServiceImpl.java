@@ -31,4 +31,13 @@ public class ProductsServiceImpl implements ProductsService {
         return match.get();
     }
 
+    @Override
+    public Product createProduct(Product p){
+        Product prod = repo.save(p);
+        return prod;
+    }
+
+
+
+
 }

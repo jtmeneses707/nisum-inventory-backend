@@ -5,13 +5,16 @@ import com.ascend.components.services.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin
-@RequestMapping("/api") // <-- this good?
+@RequestMapping("/api") // <--- this good?
 public class ProductsController {
 
     @Autowired
     ProductsService service;
+
 
     @PostMapping("/products/create")
     @ResponseBody

@@ -14,16 +14,14 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api") // <--- this good?
+@RequestMapping("/api/products") // <--- this good?
 public class ProductsController {
 
     @Autowired
     ProductsService service;
 
-
-
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("{upc}")
+    @GetMapping("get/{upc}")
     public Map<String, Products> getProduct(@PathVariable String upc) {
         var response = new HashMap<String, Products>();
         var product = service.get(upc);
@@ -31,8 +29,7 @@ public class ProductsController {
         return response;
     }
 
-
-    @PostMapping("/products/create")
+    @PostMapping("create")
     @ResponseBody
     public Products addProduct(@RequestBody Products p){
         Products response = service.createProduct(p);

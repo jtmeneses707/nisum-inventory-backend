@@ -6,8 +6,7 @@ import javax.persistence.Table;
 
 @Table
 @Entity
-public class Products {
-
+public class Product {
     @Id
     String UPC;
 

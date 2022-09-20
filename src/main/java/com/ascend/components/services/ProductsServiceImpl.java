@@ -19,4 +19,13 @@ public class ProductsServiceImpl implements ProductsService {
         return pList;
     }
 
+    @Override
+    public Products createProduct(Products p){
+        Products prod = repo.save(p);
+        return prod;
+    }
+
+
+
+
 }

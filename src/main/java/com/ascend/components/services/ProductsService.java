@@ -13,5 +13,5 @@ public interface ProductsService {
 
     Products createProduct(Products p);
 
-    public boolean deleteItem(int upc);
+    boolean deleteItem(String upc);
 }

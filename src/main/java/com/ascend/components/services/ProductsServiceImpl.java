@@ -25,9 +25,15 @@ public class ProductsServiceImpl implements ProductsService {
         return prod;
     }
 
-
-
-
+    @Override
+    public boolean deleteItem(int upc) {
+        try {
+            repo.deleteById(upc);
+            return true;
+        } catch (Exception e) {
+            throw e;  //may need to create a new Exception for more clarity when an exception is thrown.
+        }
+    }
 
 
 }

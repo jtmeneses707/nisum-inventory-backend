@@ -11,5 +11,5 @@ public interface ProductsService {
 
     Products createProduct(Products p);
 
-    //test commit 1:48
+    public boolean deleteItem(int upc);
 }

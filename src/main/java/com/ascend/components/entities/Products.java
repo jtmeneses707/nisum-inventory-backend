@@ -1,32 +1,39 @@
 package com.ascend.components.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Table
+@Table(name = "products")
 @Entity
 public class Products {
-
     @Id
     String UPC;
 
+    @Column(name = "prodname")
     String ProdName;
 
     String Brand;
 
+    @Column(name = "proddescription")
     String ProdDesc;
 
     String Category;
 
+    @Column(name = "priceperunit")
     float PricePerUnit;
 
+    @Column(name = "imageurl")
     String ImageURL;
 
+    @Column(name = "availablestock")
     int AvailableStock;
 
+    @Column(name = "reservedstock")
     int ReservedStock;
 
+    @Column(name = "shippedstock")
     int ShippedStock;
 
     public String getUPC() {
@@ -112,16 +119,16 @@ public class Products {
     @Override
     public String toString() {
         return "Products{" +
-                ", UPC='" + UPC + '\'' +
-                ", ProdName='" + ProdName + '\'' +
-                ", Brand='" + Brand + '\'' +
-                ", ProdDesc='" + ProdDesc + '\'' +
-                ", Category='" + Category + '\'' +
-                ", PricePerUnit=" + PricePerUnit +
-                ", ImageURL='" + ImageURL + '\'' +
-                ", AvailableStock=" + AvailableStock +
-                ", ReservedStock=" + ReservedStock +
-                ", ShippedStock=" + ShippedStock +
-                '}';
+            "UPC='" + UPC + '\'' +
+            ", ProdName='" + ProdName + '\'' +
+            ", Brand='" + Brand + '\'' +
+            ", ProdDesc='" + ProdDesc + '\'' +
+            ", Category='" + Category + '\'' +
+            ", PricePerUnit=" + PricePerUnit +
+            ", ImageURL='" + ImageURL + '\'' +
+            ", AvailableStock=" + AvailableStock +
+            ", ReservedStock=" + ReservedStock +
+            ", ShippedStock=" + ShippedStock +
+            '}';
     }
 }

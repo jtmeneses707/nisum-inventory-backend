@@ -20,6 +20,13 @@ public class ProductsController {
     @Autowired
     ProductsService service;
 
+    @RequestMapping("/fetchAllItems")
+    @ResponseBody
+    public List<Products> getAll() {
+        List<Products> pList = service.getAll();
+        return pList;
+    }
+
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("get/{upc}")
     public Map<String, Products> getProduct(@PathVariable String upc) {

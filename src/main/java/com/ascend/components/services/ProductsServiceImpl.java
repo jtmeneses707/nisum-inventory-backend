@@ -32,9 +32,19 @@ public class ProductsServiceImpl implements ProductsService {
     }
 
     @Override
-    public Products createProduct(Products p){
+    public Products createProduct(Products p) {
         Products prod = repo.save(p);
         return prod;
+    }
+
+    public Products updateProduct(Products p) {
+        var match = repo.findById(p.getUPC());
+
+        if (match.isEmpty()) {
+            throw new ItemNotFoundException("Item " + p.getUPC() + " not found in database.");
+        }
+
+        return repo.save(p);
     }
 
     @Override
@@ -46,6 +56,5 @@ public class ProductsServiceImpl implements ProductsService {
             throw new ItemNotFoundException("Item " + upc + " not found in database.");
         }
     }
-
 
 }

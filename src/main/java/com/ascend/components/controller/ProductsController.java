@@ -37,6 +37,8 @@ public class ProductsController {
         return response;
     }
 
+
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/create")
     @ResponseBody
     public Products addProduct(@RequestBody Products p){
@@ -46,10 +48,20 @@ public class ProductsController {
 
     @DeleteMapping("/delete/{upc}")
     @GetMapping
-    public Map<String, Boolean> deleteProduct(@PathVariable String upc){
+    public Map<String, Boolean> deleteProduct(@PathVariable String upc) {
         var response = new HashMap<String, Boolean>();
         var product = service.deleteByUPC(upc);
         response.put("deleted product", product);
         return response;
     }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/update")
+    public Map<String, Products> updateProduct(@RequestBody Products p) {
+        var response = new HashMap<String, Products>();
+        var product = service.updateProduct(p);
+        response.put("updated", product);
+        return response;
+    }
+
 }

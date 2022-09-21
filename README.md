@@ -1,7 +1,9 @@
 use this for your mysql to locally test
 
-create table products(upc char(12) NOT NULL, prodname varchar(50) NOT NULL, brand varchar(50) NOT NULL, proddesc varchar(100) NOT NULL, category varchar(50) NOT NULL, priceperunit float NOT
-NULL, imageurl varchar(2048), availablestock int NOT NULL, reservedstock int NOT NULL, shippedstock
+READ DIS, MADE CHANGES TO DB
+
+create table products(upc char(12) NOT NULL, prod_name varchar(50) NOT NULL, brand varchar(50) NOT NULL, prod_desc varchar(100) NOT NULL, category varchar(50) NOT NULL, price_per_unit float NOT
+NULL, image_url varchar(2048), available_stock int NOT NULL, reserved_stock int NOT NULL, shipped_stock
 int NOT NULL, PRIMARY KEY(UPC));
 
 

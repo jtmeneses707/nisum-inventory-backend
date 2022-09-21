@@ -18,7 +18,7 @@ public class Products {
     @Column(name = "brand")
     String Brand;
 
-    @Column(name = "prod_desc")
+    @Column(name = "prod_description")
     String ProdDesc;
 
     @Column(name = "category")

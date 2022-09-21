@@ -13,5 +13,9 @@ public interface ProductsService {
 
     Products createProduct(Products p);
 
+    Products updateProduct(Products p);
+
     boolean deleteItem(String upc);
+
+
 }

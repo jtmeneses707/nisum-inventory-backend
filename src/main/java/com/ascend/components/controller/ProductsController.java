@@ -34,4 +34,13 @@ public class ProductsController {
     public Products addProduct(@RequestBody Products p){
         return service.createProduct(p);
     }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/update")
+    public Map<String, Products> updateProduct(@RequestBody Products p) {
+        var response = new HashMap<String, Products>();
+        var product = service.updateProduct(p);
+        response.put("updated", product);
+        return response;
+    }
 }

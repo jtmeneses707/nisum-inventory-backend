@@ -12,4 +12,10 @@ public interface ProductsService {
     Products get(String upc);
 
     Products createProduct(Products p);
+
+    Products updateProduct(Products p);
+
+    boolean deleteItem(String upc);
+
+
 }

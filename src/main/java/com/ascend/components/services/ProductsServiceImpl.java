@@ -37,7 +37,6 @@ public class ProductsServiceImpl implements ProductsService {
         return prod;
     }
 
-    @Override
     public Products updateProduct(Products p) {
         var match = repo.findById(p.getUPC());
 
@@ -49,7 +48,7 @@ public class ProductsServiceImpl implements ProductsService {
     }
 
     @Override
-    public boolean deleteItem(String upc) {
+    public boolean deleteByUPC(String upc) {
         try {
             repo.deleteById(upc);
             return true;

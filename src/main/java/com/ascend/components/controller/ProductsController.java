@@ -28,7 +28,7 @@ public class ProductsController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("get/{upc}")
+    @GetMapping("/get/{upc}")
     public Map<String, Products> getProduct(@PathVariable String upc) {
         var response = new HashMap<String, Products>();
         var product = service.get(upc);
@@ -36,7 +36,8 @@ public class ProductsController {
         return response;
     }
 
-    @PostMapping("create")
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/create")
     @ResponseBody
     public Products addProduct(@RequestBody Products p){
         return service.createProduct(p);

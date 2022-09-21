@@ -4,6 +4,7 @@ import com.ascend.components.entities.Products;
 import com.ascend.components.services.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -40,5 +41,15 @@ public class ProductsController {
     @ResponseBody
     public Products addProduct(@RequestBody Products p){
         return service.createProduct(p);
+    }
+
+
+    @DeleteMapping("/delete/{upc}")
+    @GetMapping
+    public Map<String, Boolean> deleteProduct(@PathVariable String upc){
+        var response = new HashMap<String, Boolean>();
+        var product = service.deleteByUPC(upc);
+        response.put("deleted product", product);
+        return response;
     }
 }

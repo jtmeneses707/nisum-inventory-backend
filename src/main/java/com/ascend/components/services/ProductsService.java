@@ -9,7 +9,9 @@ import java.util.List;
 public interface ProductsService {
     List<Products> getAll();
 
+    Products get(String upc);
+
     Products createProduct(Products p);
 
-    public boolean deleteItem(int upc);
+    boolean deleteItem(String upc);
 }

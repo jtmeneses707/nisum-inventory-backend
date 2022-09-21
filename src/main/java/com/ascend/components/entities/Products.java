@@ -9,16 +9,19 @@ import javax.persistence.Table;
 @Entity
 public class Products {
     @Id
+    @Column(name = "upc")
     String UPC;
 
     @Column(name = "prodname")
     String ProdName;
 
+    @Column(name = "brand")
     String Brand;
 
     @Column(name = "proddescription")
     String ProdDesc;
 
+    @Column(name = "category")
     String Category;
 
     @Column(name = "priceperunit")

@@ -36,6 +36,7 @@ public class ProductsController {
         return response;
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/create")
     @ResponseBody
     public Products addProduct(@RequestBody Products p){

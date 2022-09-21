@@ -12,31 +12,31 @@ public class Products {
     @Column(name = "upc")
     String UPC;
 
-    @Column(name = "prodname")
+    @Column(name = "prod_name")
     String ProdName;
 
     @Column(name = "brand")
     String Brand;
 
-    @Column(name = "proddescription")
+    @Column(name = "prod_desc")
     String ProdDesc;
 
     @Column(name = "category")
     String Category;
 
-    @Column(name = "priceperunit")
+    @Column(name = "price_per_unit")
     float PricePerUnit;
 
-    @Column(name = "imageurl")
+    @Column(name = "image_url")
     String ImageURL;
 
-    @Column(name = "availablestock")
+    @Column(name = "available_stock")
     int AvailableStock;
 
-    @Column(name = "reservedstock")
+    @Column(name = "reserved_stock")
     int ReservedStock;
 
-    @Column(name = "shippedstock")
+    @Column(name = "shipped_stock")
     int ShippedStock;
 
     public String getUPC() {

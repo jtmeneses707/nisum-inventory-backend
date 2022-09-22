@@ -4,6 +4,10 @@ package com.api;
 import com.ascend.components.entities.Products;
 import com.ascend.nisuminventoryapi.NisumInventoryApiApplication;
 import io.cucumber.messages.types.Product;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -24,22 +28,40 @@ public class A92280Test {
     @Autowired
     private MockMvc mockMvc;
 
+    private static final Logger LOGGER = LogManager.getLogger(A92280Test.class);
+
+    @BeforeAll
+    public static void setUp() {
+        LOGGER.info("API TEST LOG COMMENCED: CREATE PRODUCTS");
+    }
+
+    @AfterAll
+    public static void tearDown() throws Exception {
+        LOGGER.info("LOG COMPLETED: CREATE PRODUCTS");
+    }
+
     @Test
     public void createProductTest() throws Exception {
-         Products product = new Products();
+        LOGGER.info("Test POST METHOD WITH ENDPOINT: /api/products/create");
+
+        Products product = new Products();
          product.setProdName("Hot Cheetos");
-         product.setProdDesc("Spicy chips");
+         product.setProdDesc("Spicy flaming chips");
          product.setCategory("Chips");
-         product.setPricePerUnit((float) 2.29);
+         product.setPricePerUnit((float) 5.29);
          product.setImageURL("chips url");
-         product.setAvailableStock(99);
+         product.setAvailableStock(919);
          product.setReservedStock(1000);
-         product.setShippedStock(20);
-         product.setUPC("213414732684");
-         product.setBrand("Cheeto");
-    System.out.println(toJson(product));
-    this.mockMvc.perform(post("/api/products/create").contentType(MediaType.APPLICATION_JSON)
+         product.setShippedStock(230);
+         product.setUPC("213476732684");
+         product.setBrand("Cheetos");
+
+        this.mockMvc.perform(post("/api/products/create").contentType(MediaType.APPLICATION_JSON)
             .content(toJson(product))).andDo(print()).andExpect(status().isCreated());
+
+        LOGGER.info("Printed Response");
+        LOGGER.info("Expected status code 201 CREATED");
+        LOGGER.info("Successfully created a product");
     }
 
     public String toJson(Products product){

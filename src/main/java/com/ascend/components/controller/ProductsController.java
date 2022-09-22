@@ -2,6 +2,8 @@ package com.ascend.components.controller;
 
 import com.ascend.components.entities.Products;
 import com.ascend.components.services.ProductsService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
@@ -12,6 +14,7 @@ import java.util.Map;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 
 @RestController
 @CrossOrigin
@@ -41,8 +44,11 @@ public class ProductsController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/create")
     @ResponseBody
-    public Products addProduct(@RequestBody Products p){
-        return service.createProduct(p);
+    public Map<String, Products> addProduct(@RequestBody Products p){
+        var response = new HashMap<String, Products>();
+        var product = service.createProduct(p);
+        response.put("new product", product);
+        return response;
     }
 
 

@@ -174,7 +174,10 @@
             <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
 
 
 <!--&gt;>>>>>> 2e4f8cabf01f3cc92be297214de24d304dd5c165-->

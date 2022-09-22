@@ -41,8 +41,11 @@ public class ProductsController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/create")
     @ResponseBody
-    public Products addProduct(@RequestBody Products p){
-        return service.createProduct(p);
+    public Map<String, Products> addProduct(@RequestBody Products p){
+        var response = new HashMap<String, Products>();
+        var product = service.createProduct(p);
+        response.put("new product", product);
+        return response;
     }
 
 

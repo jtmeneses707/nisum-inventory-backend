@@ -36,6 +36,13 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+<!--<<<<<<< HEAD-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+<!--=======-->
 
 
 
@@ -111,6 +118,14 @@
             <version>2.18.0</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-log4j2 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+            <version>2.7.1</version>
+        </dependency>
+
+
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -165,6 +180,7 @@
         </dependency>
 
 
+<!--&gt;>>>>>> 2e4f8cabf01f3cc92be297214de24d304dd5c165-->
     </dependencies>
 
     <build>

@@ -21,6 +21,7 @@ public class A92273Test {
     @Test
     public void A92273FetchSpecificUPC() throws Exception{
 
+
         this.mockMvc.perform(get("/api/products/get/{upc}","036000291452")).
                 andDo(print()).andExpect(status().isOk());
 

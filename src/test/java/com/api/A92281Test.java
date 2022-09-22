@@ -23,7 +23,7 @@ public class A92281Test {
     @Test
     public void A92281DeleteProduct() throws Exception{
 
-        this.mockMvc.perform(delete("/api/products/delete/036234291466")).
+        this.mockMvc.perform(delete("/api/products/delete/036234291412")).
                 andDo(print()).andExpect(status().isOk());
 
     }

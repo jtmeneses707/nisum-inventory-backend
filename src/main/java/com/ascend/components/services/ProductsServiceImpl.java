@@ -37,6 +37,7 @@ public class ProductsServiceImpl implements ProductsService {
         return prod;
     }
 
+    @Override
     public Products updateProduct(Products p) {
         var match = repo.findById(p.getUPC());
 

@@ -33,4 +33,4 @@ build/
 .vscode/
 
 ### removal of application.properties while we don't have a remote SQL server ###
-*.properties
+application.properties

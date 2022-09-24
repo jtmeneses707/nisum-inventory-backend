@@ -5,12 +5,11 @@ import com.ascend.components.exception.ItemNotFoundException;
 import com.ascend.components.repositories.ProductsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 
-@Service
+@Component
 public class ProductsServiceImpl implements ProductsService {
     @Autowired
     ProductsRepository repo;
@@ -38,7 +37,6 @@ public class ProductsServiceImpl implements ProductsService {
         return prod;
     }
 
-    @Override
     public Products updateProduct(Products p) {
         var match = repo.findById(p.getUPC());
 

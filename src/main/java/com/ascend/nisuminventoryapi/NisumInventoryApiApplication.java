@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication(scanBasePackages = "com.*")
 @EnableJpaRepositories(basePackages = "com.*")
 @EntityScan(basePackages = "com.*")
+@EnableAutoConfiguration
 public class NisumInventoryApiApplication {
 
   public static void main(String[] args) {

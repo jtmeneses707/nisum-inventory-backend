@@ -14,23 +14,42 @@ public class SearchBarTesting {
 
     @Test
     public void checkChrome() throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver","src/test/java/com/selenium/drivers/chromedriver");
+        System.setProperty("webdriver.chrome.driver","src/test/java/com/selenium/drivers/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.get("http://127.0.0.1:4200/"); //opens local host / port number
+        String bodyText = driver.findElement(By.className("container")).getText();
+        driver.findElement(By.name("Search")).sendKeys("egg");
+        Thread.sleep(2000);
+        Assert.assertTrue(bodyText.contains("egg")); //tests to see if the page contains the searched word
+        driver.findElement(By.name("Search")).clear();
+        driver.findElement(By.name("Search")).sendKeys("4.2");
+        Thread.sleep(2000);
+        Assert.assertTrue(bodyText.contains("4.2")); //tests to see if the page contains the searched word
+        driver.findElement(By.name("Search")).clear();
+
         driver.findElement(By.name("Search")).sendKeys("1452");
         Thread.sleep(2000);
-        Assert.assertTrue(driver.getPageSource().contains("1452")); //tests to see if the page contains the searched word
+        Assert.assertTrue(bodyText.contains("1452")); //tests to see if the page contains the searched word
         driver.close();
     }
 
     @Test
     public void checkEdge() throws InterruptedException {
-        System.setProperty("webdriver.edge.driver","src/test/java/com/selenium/drivers/msedgedriver");
+        System.setProperty("webdriver.edge.driver","src/test/java/com/selenium/drivers/msedgedriver.exe");
         WebDriver driver = new EdgeDriver();
         driver.get("http://127.0.0.1:4200/"); //opens local host / port number
+        String bodyText = driver.findElement(By.className("container")).getText();
         driver.findElement(By.name("Search")).sendKeys("egg");
         Thread.sleep(2000);
-        Assert.assertTrue(driver.getPageSource().contains("egg")); //tests to see if the page contains the searched word
+        Assert.assertTrue(bodyText.contains("egg")); //tests to see if the page contains the searched word
+        driver.findElement(By.name("Search")).clear();
+        driver.findElement(By.name("Search")).sendKeys("4.2");
+        Thread.sleep(2000);
+        Assert.assertTrue(bodyText.contains("4.2"));; //tests to see if the page contains the searched word
+        driver.findElement(By.name("Search")).clear();
+        driver.findElement(By.name("Search")).sendKeys("1452");
+        Thread.sleep(2000);
+        Assert.assertTrue(bodyText.contains("1452")); //tests to see if the page contains the searched word
         driver.close();
     }
 
@@ -39,9 +58,18 @@ public class SearchBarTesting {
         System.setProperty("webdriver.gecko.driver","src/test/java/com/selenium/drivers/geckodriver");
         WebDriver driver = new FirefoxDriver();
         driver.get("http://127.0.0.1:4200/"); //opens local host / port number
-        driver.findElement(By.name("Search")).sendKeys("036000291452");
+        String bodyText = driver.findElement(By.className("container")).getText();
+        driver.findElement(By.name("Search")).sendKeys("egg");
         Thread.sleep(2000);
-        Assert.assertTrue(driver.getPageSource().contains("036000291452")); //tests to see if the page contains the searched number
+        Assert.assertTrue(bodyText.contains("egg"));  //tests to see if the page contains the searched word
+        driver.findElement(By.name("Search")).clear();
+        driver.findElement(By.name("Search")).sendKeys("4.2");
+        Thread.sleep(2000);
+        Assert.assertTrue(bodyText.contains("4.2"));  //tests to see if the page contains the searched word
+        driver.findElement(By.name("Search")).clear();
+        driver.findElement(By.name("Search")).sendKeys("1452");
+        Thread.sleep(2000);
+        Assert.assertTrue(bodyText.contains("1452"));  //tests to see if the page contains the searched word
         driver.close();
     }
 }

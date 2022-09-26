@@ -72,6 +72,7 @@ public class ProductsController {
    * Search endpoint to search for specific criteria passed in request body.
    * Any combination of 3 criteria allowed (except all null):
    * upc substring, brand, and category.
+   * Criteria are matched using an AND rather than an OR, meaning all matches returned in array match all criteria searched by.
    *
    * @param req Request body with
    * @return List of all matches found.
@@ -83,10 +84,7 @@ public class ProductsController {
     if (req.getUPC() == null && req.getBrand() == null && req.getCategory() == null) {
       throw new IllegalArgumentException("Bad request. Check body format of " + req);
     }
-
-    // Parse only the criteria fields we allow for this endpoint.
-//    var matcherArgs = new Products();
-//    var matches = service.searchProducts(req);
+    
     matches.put("matches", service.searchProducts(req));
     return matches;
   }

@@ -18,53 +18,77 @@ import java.util.List;
 @RequestMapping("/api/products") // <--- this good?
 public class ProductsController {
 
-    @Autowired
-    ProductsServiceImpl service;
+  @Autowired
+  ProductsService service;
 
-    @RequestMapping("/fetchAllItems")
-    @ResponseBody
-    public List<Products> getAll() {
-        List<Products> pList = service.getAll();
-        return pList;
+  @RequestMapping("/fetchAllItems")
+  @ResponseBody
+  public List<Products> getAll() {
+    List<Products> pList = service.getAll();
+    return pList;
+  }
+
+  @ResponseStatus(HttpStatus.OK)
+  @GetMapping("/get/{upc}")
+  public Map<String, Products> getProduct(@PathVariable String upc) {
+    var response = new HashMap<String, Products>();
+    var product = service.get(upc);
+    response.put("product", product);
+    return response;
+  }
+
+
+  @ResponseStatus(HttpStatus.CREATED)
+  @PostMapping("/create")
+  @ResponseBody
+  public Map<String, Products> addProduct(@RequestBody Products p) {
+    var response = new HashMap<String, Products>();
+    var product = service.createProduct(p);
+    response.put("new product", product);
+    return response;
+  }
+
+
+  @DeleteMapping("/delete/{upc}")
+  @GetMapping
+  public Map<String, Boolean> deleteProduct(@PathVariable String upc) {
+    var response = new HashMap<String, Boolean>();
+    var product = service.deleteByUPC(upc);
+    response.put("deleted product", product);
+    return response;
+  }
+
+  @ResponseStatus(HttpStatus.OK)
+  @PutMapping("/update")
+  public Map<String, Products> updateProduct(@RequestBody Products p) {
+    var response = new HashMap<String, Products>();
+    var product = service.updateProduct(p);
+    response.put("updated", product);
+    return response;
+  }
+
+
+  /**
+   * Search endpoint to search for specific criteria passed in request body.
+   * Any combination of 3 criteria allowed (except all null):
+   * upc substring, brand, and category.
+   *
+   * @param req Request body with
+   * @return List of all matches found.
+   */
+  @ResponseStatus(HttpStatus.OK)
+  @GetMapping("/search")
+  public Map<String, List<Products>> searchProducts(@RequestBody Products req) {
+    var matches = new HashMap<String, List<Products>>();
+    if (req.getUPC() == null && req.getBrand() == null && req.getCategory() == null) {
+      throw new IllegalArgumentException("Bad request. Check body format of " + req);
     }
 
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/get/{upc}")
-    public Map<String, Products> getProduct(@PathVariable String upc) {
-        var response = new HashMap<String, Products>();
-        var product = service.get(upc);
-        response.put("product", product);
-        return response;
-    }
-
-
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/create")
-    @ResponseBody
-    public Map<String, Products> addProduct(@RequestBody Products p){
-        var response = new HashMap<String, Products>();
-        var product = service.createProduct(p);
-        response.put("new product", product);
-        return response;
-    }
-
-
-    @DeleteMapping("/delete/{upc}")
-    @GetMapping
-    public Map<String, Boolean> deleteProduct(@PathVariable String upc) {
-        var response = new HashMap<String, Boolean>();
-        var product = service.deleteByUPC(upc);
-        response.put("deleted product", product);
-        return response;
-    }
-
-    @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/update")
-    public Map<String, Products> updateProduct(@RequestBody Products p) {
-        var response = new HashMap<String, Products>();
-        var product = service.updateProduct(p);
-        response.put("updated", product);
-        return response;
-    }
+    // Parse only the criteria fields we allow for this endpoint.
+//    var matcherArgs = new Products();
+//    var matches = service.searchProducts(req);
+    matches.put("matches", service.searchProducts(req));
+    return matches;
+  }
 
 }

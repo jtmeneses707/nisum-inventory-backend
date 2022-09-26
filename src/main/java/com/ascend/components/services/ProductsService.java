@@ -16,6 +16,8 @@ public interface ProductsService {
 
     Products updateProduct(Products p);
 
+    List<Products> searchProducts(Products p);
+
 
 
 

@@ -56,7 +56,7 @@ public class ProductsServiceImpl implements ProductsService {
     // If any criteria below is null, then it won't be matched against.
     var matcher = ExampleMatcher.matchingAll()
         .withMatcher("UPC", ExampleMatcher.GenericPropertyMatchers.contains())
-        .withMatcher("ProdName", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase())
+        .withMatcher("Brand", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase())
         .withMatcher("Category", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase());
 
     var example = Example.of(p, matcher);

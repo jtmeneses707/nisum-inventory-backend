@@ -73,6 +73,7 @@ public class ProductsController {
    * Any combination of 3 criteria allowed (except all null):
    * upc substring, brand, and category.
    * Criteria are matched using an AND rather than an OR, meaning all matches returned in array match all criteria searched by.
+   * All criteria are case-insensitive.
    *
    * @param req Request body with
    * @return List of all matches found.
@@ -84,7 +85,7 @@ public class ProductsController {
     if (req.getUPC() == null && req.getBrand() == null && req.getCategory() == null) {
       throw new IllegalArgumentException("Bad request. Check body format of " + req);
     }
-    
+
     matches.put("matches", service.searchProducts(req));
     return matches;
   }

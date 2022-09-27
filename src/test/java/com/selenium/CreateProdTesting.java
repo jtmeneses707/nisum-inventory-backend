@@ -27,7 +27,7 @@ public class CreateProdTesting {
         Thread.sleep(2000);
         driver.close();
     }
-@Test
+    @Test
     public void checkEdge() throws InterruptedException {
         System.setProperty("webdriver.edge.driver","src/test/java/com/selenium/drivers/msedgedriver");
         WebDriver driver = new ChromeDriver();

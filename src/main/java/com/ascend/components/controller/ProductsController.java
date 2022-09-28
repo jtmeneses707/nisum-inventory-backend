@@ -2,7 +2,6 @@ package com.ascend.components.controller;
 
 import com.ascend.components.entities.Products;
 import com.ascend.components.services.ProductsService;
-import com.ascend.components.services.ProductsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

@@ -5,11 +5,12 @@ import com.ascend.components.exception.ItemNotFoundException;
 import com.ascend.components.repositories.ProductsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 
-@Component
+@Service
 public class ProductsServiceImpl implements ProductsService {
     @Autowired
     ProductsRepository repo;
@@ -25,7 +26,7 @@ public class ProductsServiceImpl implements ProductsService {
         var match = repo.findById(upc);
 
         if (match.isEmpty()) {
-           throw new ItemNotFoundException("Item " + upc + " not found in database.");
+            throw new ItemNotFoundException("Item " + upc + " not found in database.");
         }
 
         return match.get();
@@ -37,6 +38,7 @@ public class ProductsServiceImpl implements ProductsService {
         return prod;
     }
 
+    @Override
     public Products updateProduct(Products p) {
         var match = repo.findById(p.getUPC());
 

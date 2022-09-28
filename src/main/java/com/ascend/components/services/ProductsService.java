@@ -17,7 +17,11 @@ public interface ProductsService {
 
     Products updateProduct(Products p);
 
+    Products reserveStock(String upc, int quantity);
 
+    Products shipStock(String upc, int quantity);
+
+    Products cancelStock(String upc, int quantity);
 
 
 }

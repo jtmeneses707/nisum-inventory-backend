@@ -5,7 +5,7 @@ COPY src $APP_HOME/src/
 
 COPY pom.xml $APP_HOME/
 USER root
-RUN mvn -f $APP_HOME/pom.xml/ clean package
+RUN mvn -f $APP_HOME/pom.xml/ package
 
 # actual container
 FROM adoptopenjdk/openjdk11:alpine-jre

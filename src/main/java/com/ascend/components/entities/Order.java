@@ -36,4 +36,13 @@ public class Order {
     public void setStatus(String status) {
         Status = status;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "UPC='" + UPC + '\'' +
+                ", quantity=" + quantity +
+                ", Status='" + Status + '\'' +
+                '}';
+    }
 }

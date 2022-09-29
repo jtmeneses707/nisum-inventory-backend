@@ -10,6 +10,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.List;
 
 public class PaginationUITesting {       //Moved to manual testing due to IRRETRIEVABLE Element Finding Problems
     WebDriver driver;
@@ -29,6 +34,7 @@ public class PaginationUITesting {       //Moved to manual testing due to IRRETR
         driver.get("http://localhost:4200/products");
 
         //traveling page forward
+
         WebElement nextPage = driver.findElement(By.className("mat-paginator-navigation-next"));
 
         js.executeScript("arguments[0].scrollIntoView();", nextPage);
@@ -42,6 +48,7 @@ public class PaginationUITesting {       //Moved to manual testing due to IRRETR
         actions.moveToElement(driver.findElement(By.className("mat-paginator-navigation-next")), 0, 0);
 
         actions.moveByOffset(1320, 960).click();
+
 
         //traveling page backward
 
@@ -60,7 +67,7 @@ public class PaginationUITesting {       //Moved to manual testing due to IRRETR
         actions.moveByOffset(1280,960).click();
 
         /* elements were unfortunately deemed unclickable with automation testing, however upon manual testing
-        pagination functions work. elements are also deemed to be present on the page.
+        pagination functions work. elements are also deemed to be present on the page with this current test.
          */
 
     }

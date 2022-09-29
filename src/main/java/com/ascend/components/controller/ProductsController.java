@@ -1,11 +1,9 @@
 package com.ascend.components.controller;
 
-import com.ascend.components.entities.Order;
 import com.ascend.components.entities.Products;
 import com.ascend.components.services.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -29,8 +27,8 @@ public class ProductsController {
 //    private static final String TOPIC = "oms-order-canceled";
 //
 //    @GetMapping("/public/cancel/{upc}/{quan}")
-//    public String post(@PathVariable("upc") final String upc,@PathVariable("quan") final int quantitiy){
-//        kafkaTemplate.send(TOPIC, new Order(upc, quantitiy, "CANCEL"));
+//    public String post(@PathVariable("upc") final String upc,@PathVariable("quan") final int quantity){
+//        kafkaTemplate.send(TOPIC, new Order(upc, quantity, "CANCEL"));
 //        return "CANCEL SUCCESS";
 //    }
 

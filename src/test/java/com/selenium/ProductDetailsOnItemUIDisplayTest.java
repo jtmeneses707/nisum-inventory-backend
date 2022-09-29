@@ -24,7 +24,7 @@ public class ProductDetailsOnItemUIDisplayTest {
         driver.findElement(By.xpath("/html/body/app-root/div/app-product-view-page/app-product-list/mat-table/mat-row[1]/mat-cell[1]")).click();
         Thread.sleep(1000);
 
-        //switch to window handle + accept delete
+        //switch to window handle
 
         String details = driver.switchTo().activeElement().getText();
 

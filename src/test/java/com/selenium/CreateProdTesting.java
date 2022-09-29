@@ -8,7 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class CreateProdTesting {
     @Test
     public void checkChrome() throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver","src/test/java/com/selenium/drivers/chromedriver");
+        System.setProperty("webdriver.chrome.driver","src/test/java/com/selenium/drivers/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.get("http://127.0.0.1:4200/"); //opens local host / port number
         driver.findElement(By.xpath("/html/body/app-root/div/app-create-product-btn/button")).click();

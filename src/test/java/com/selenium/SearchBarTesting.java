@@ -71,7 +71,6 @@ public class SearchBarTesting {
         driver.findElement(By.name("Search")).sendKeys("88");
         Assert.assertTrue(driver.getPageSource().contains("88"));
         Thread.sleep(2000);
-
         driver.close();
     }
 
@@ -141,10 +140,18 @@ public class SearchBarTesting {
         System.setProperty("webdriver.gecko.driver","src/test/java/com/selenium/drivers/geckodriver");
         WebDriver driver = new FirefoxDriver();
         driver.get("http://127.0.0.1:4200/"); //opens local host / port number
-        driver.findElement(By.name("Search")).sendKeys("5.6");
+        String bodyText = driver.findElement(By.className("container")).getText();
+        driver.findElement(By.name("Search")).sendKeys("egg");
         Thread.sleep(2000);
-        Assert.assertTrue(driver.getPageSource().contains("5.6")); //tests to see if the page contains the searched number
+        Assert.assertTrue(bodyText.contains("egg"));  //tests to see if the page contains the searched word
+        driver.findElement(By.name("Search")).clear();
+        driver.findElement(By.name("Search")).sendKeys("4.2");
+        Thread.sleep(2000);
+        Assert.assertTrue(bodyText.contains("4.2"));  //tests to see if the page contains the searched word
+        driver.findElement(By.name("Search")).clear();
+        driver.findElement(By.name("Search")).sendKeys("1452");
+        Thread.sleep(2000);
+        Assert.assertTrue(bodyText.contains("1452"));  //tests to see if the page contains the searched word
         driver.close();
-        //NOTE: Firefox Search Bar testing passes and will sendkeys search, but fails to load database products and searched products.
     }
 }

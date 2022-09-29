@@ -22,18 +22,18 @@ public class ProductsController {
     @Autowired
     ProductsService service;
 
-    //Here for kafka producer testing purposes
+////    Here for kafka producer testing purposes
 //    @Autowired
 //    private KafkaTemplate<String, Order> kafkaTemplate;
 //
 //    private static final String TOPIC = "oms-order-canceled";
 //
-//    @GetMapping("/public/create/{upc}/{quan}")
+//    @GetMapping("/public/cancel/{upc}/{quan}")
 //    public String post(@PathVariable("upc") final String upc,@PathVariable("quan") final int quantitiy){
-//        kafkaTemplate.send(TOPIC, new Order(upc, quantitiy, "CREATE"));
+//        kafkaTemplate.send(TOPIC, new Order(upc, quantitiy, "CANCEL"));
 //        return "CANCEL SUCCESS";
 //    }
-    //
+
 
     @RequestMapping("/fetchAllItems")
     @ResponseBody

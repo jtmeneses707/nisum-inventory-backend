@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Prune Image') {
             steps {
-                sh 'docker image prune -f'
+                //sh 'docker image prune -f'
             }
         }
     }

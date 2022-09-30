@@ -44,8 +44,6 @@ public class ProductsController {
 //        kafkaTemplate.send(TOPIC, order);
 //        return "PENDING SUCCESS";
 //    }
-
-
     @RequestMapping("/fetchAllItems")
     @ResponseBody
     public List<Products> getAll() {
@@ -61,6 +59,30 @@ public class ProductsController {
         response.put("product", product);
         return response;
     }
+
+
+
+  /**
+   * Search endpoint to search for specific criteria passed in request body.
+   * Any combination of 3 criteria allowed (except all null):
+   * upc substring, brand, and category.
+   * Criteria are matched using an AND rather than an OR, meaning all matches returned in array match all criteria searched by.
+   * All criteria are case-insensitive.
+   *
+   * @param req Request body with
+   * @return List of all matches found.
+   */
+  @ResponseStatus(HttpStatus.OK)
+  @GetMapping("/search")
+  public Map<String, List<Products>> searchProducts(@RequestBody Products req) {
+    var matches = new HashMap<String, List<Products>>();
+    if (req.getUPC() == null && req.getBrand() == null && req.getCategory() == null) {
+      throw new IllegalArgumentException("Bad request. Check body format of " + req);
+    }
+
+    matches.put("matches", service.searchProducts(req));
+    return matches;
+  }
 
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -95,3 +117,4 @@ public class ProductsController {
 
 
 }
+

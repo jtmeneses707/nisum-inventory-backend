@@ -1,10 +1,8 @@
 package com.ascend.components.services;
 
 import com.ascend.components.entities.Products;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 
 public interface ProductsService {
     List<Products> getAll();
@@ -19,9 +17,12 @@ public interface ProductsService {
 
     Products reserveStock(String upc, int quantity);
 
+    List<Products> searchProducts(Products p);
+
     Products shipStock(String upc, int quantity);
 
     Products cancelStock(String upc, int quantity);
+
 
 
 }

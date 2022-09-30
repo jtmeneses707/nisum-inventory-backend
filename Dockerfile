@@ -5,7 +5,7 @@ RUN mvn -f /usr/app/pom.xml clean package -DskipTests
 
 # actual container
 FROM adoptopenjdk/openjdk11:alpine
-ENV ARTIFACT_NAME=nisum-inventory-backend-0.0.1-SNAPSHOT.jar
+ENV ARTIFACT_NAME=nisum-inventory-api-0.0.1-SNAPSHOT.jar
 
 COPY --from=TEMP_BUILD_IMAGE /usr/app/target/$ARTIFACT_NAME /usr/app/
 EXPOSE 8080

@@ -23,7 +23,6 @@ public class KafkaConsumer {
             containerFactory = "orderKafkaListenerFactory")
     public void consumeJson(@Payload Order data) throws InterruptedException {
         //manipulate the data within here
-        System.out.println(data);
         String order_status = data.getOrder_status().toUpperCase();
 
         for(OrderItems order_item: data.getOrderItems()){

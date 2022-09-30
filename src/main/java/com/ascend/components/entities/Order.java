@@ -1,5 +1,8 @@
 package com.ascend.components.entities;
 
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import java.util.List;
 
 public class Order {
@@ -13,6 +16,7 @@ public class Order {
     String date_shipped;
     String order_status;
 
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     List<OrderItems> orderItems;
 
     public Order(){

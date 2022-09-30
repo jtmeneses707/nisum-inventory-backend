@@ -1,16 +1,24 @@
 package com.ascend.components.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 public class OrderItems {
     private int order_item_id;
     private int quantity;
     private String upc;
 
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name="order_id")
     Order order;
 
     public OrderItems(){}
 
-    public OrderItems(int orderitemid, int quantity, String upc) {
-        this.order_item_id = orderitemid;
+    public OrderItems(int order_item_id, int quantity, String upc) {
+        this.order_item_id = order_item_id;
         this.quantity = quantity;
         this.upc = upc;
     }
@@ -49,11 +57,11 @@ public class OrderItems {
 
     @Override
     public String toString() {
-        return "OrderItems{" +
-                "order_item_id=" + order_item_id +
-                ", quantity=" + quantity +
-                ", upc='" + upc + '\'' +
-                ", order=" + order +
-                '}';
+        return "{" +
+                " orderitemid='" + getOrder_item_id() + "'" +
+                ", orderid='" + this.getOrder().getOrder_id() + "'" +
+                ", quantity='" + getQuantity() + "'" +
+                ", upc='" + getUpc() + "'" +
+                "}";
     }
 }

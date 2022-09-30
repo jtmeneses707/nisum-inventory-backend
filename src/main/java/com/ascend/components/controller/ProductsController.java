@@ -1,11 +1,15 @@
 package com.ascend.components.controller;
 
+import com.ascend.components.entities.Order;
+import com.ascend.components.entities.OrderItems;
 import com.ascend.components.entities.Products;
 import com.ascend.components.services.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,16 +24,25 @@ public class ProductsController {
     @Autowired
     ProductsService service;
 
-////    Here for kafka producer testing purposes
+//    Here for kafka producer testing purposes
 //    @Autowired
 //    private KafkaTemplate<String, Order> kafkaTemplate;
 //
-//    private static final String TOPIC = "oms-order-canceled";
+//    private static final String TOPIC = "oms-order-create";
 //
-//    @GetMapping("/public/cancel/{upc}/{quan}")
-//    public String post(@PathVariable("upc") final String upc,@PathVariable("quan") final int quantity){
-//        kafkaTemplate.send(TOPIC, new Order(upc, quantity, "CANCEL"));
-//        return "CANCEL SUCCESS";
+//    @GetMapping("/public/create")
+//    public String post(){
+//        List<OrderItems> orderItems = new ArrayList<>();
+//        orderItems.add(new OrderItems(12, 20, "134267945634"));
+//        orderItems.add(new OrderItems(20, 5, "036234291452"));
+//        orderItems.add(new OrderItems(20, 1, "036009273652"));
+//
+//        Order order = new Order(1, 1, 1, 10, 123, "date", "date", "shipped");
+//
+//        order.setOrderItems(orderItems);
+//
+//        kafkaTemplate.send(TOPIC, order);
+//        return "PENDING SUCCESS";
 //    }
 
 

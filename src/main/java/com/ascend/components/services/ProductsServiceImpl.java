@@ -39,15 +39,6 @@ public class ProductsServiceImpl implements ProductsService {
     return prod;
   }
 
-  public Products updateProduct(Products p) {
-    var match = repo.findById(p.getUPC());
-
-    if (match.isEmpty()) {
-      throw new ItemNotFoundException("Item " + p.getUPC() + " not found in database.");
-    }
-
-    return repo.save(p);
-  }
 
   @Override
   public List<Products> searchProducts(Products p) {
@@ -65,14 +56,76 @@ public class ProductsServiceImpl implements ProductsService {
     return repo.findAll(example);
   }
 
-  @Override
-  public boolean deleteByUPC(String upc) {
-    try {
-      repo.deleteById(upc);
-      return true;
-    } catch (Exception e) {
-      throw new ItemNotFoundException("Item " + upc + " not found in database.");
+
+
+
+    @Override
+    public Products updateProduct(Products p) {
+        var match = repo.findById(p.getUPC());
+
+        if (match.isEmpty()) {
+            throw new ItemNotFoundException("Item " + p.getUPC() + " not found in database.");
+        }
+
+        return repo.save(p);
     }
-  }
+
+    @Override
+    public boolean deleteByUPC(String upc) {
+        try {
+            repo.deleteById(upc);
+            return true;
+        } catch (Exception e) {
+            throw new ItemNotFoundException("Item " + upc + " not found in database.");
+        }
+    }
+
+    //Kafka Stuff
+    @Override
+    public Products reserveStock(String upc, int quantity){
+        var match = repo.findById(upc);
+
+        if (match.isEmpty()) {
+            throw new ItemNotFoundException("Item " + upc + " not found in database.");
+        }
+
+        Products prod = match.get();
+        prod.setAvailableStock(prod.getAvailableStock()-quantity);
+        prod.setReservedStock(prod.getReservedStock()+quantity);
+
+        return repo.save(prod);
+    }
+
+    @Override
+    public Products shipStock(String upc, int quantity){
+        var match = repo.findById(upc);
+
+        if (match.isEmpty()) {
+            throw new ItemNotFoundException("Item " + upc + " not found in database.");
+        }
+
+        Products prod = match.get();
+        prod.setReservedStock(prod.getReservedStock()-quantity);
+        prod.setShippedStock(prod.getShippedStock()+quantity);
+
+        return repo.save(prod);
+    }
+
+    @Override
+    public Products cancelStock(String upc, int quantity){
+        var match = repo.findById(upc);
+
+        if (match.isEmpty()) {
+            throw new ItemNotFoundException("Item " + upc + " not found in database.");
+        }
+
+        Products prod = match.get();
+        prod.setReservedStock(prod.getReservedStock()-quantity);
+        prod.setAvailableStock(prod.getAvailableStock()+quantity);
+
+        return repo.save(prod);
+    }
 
 }
+
+

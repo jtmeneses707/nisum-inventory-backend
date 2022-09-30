@@ -1,11 +1,12 @@
-FROM maven:3.8.6-jdk-11-slim AS TEMP_BUILD_IMAGE
+#FROM maven:3.8.6-jdk-11-slim AS TEMP_BUILD_IMAGE
+FROM maven:latest AS TEMP_BUILD_IMAGE
 ENV APP_HOME=/usr/app/
 WORKDIR $APP_HOME
 COPY src $APP_HOME/src/
 
 COPY pom.xml $APP_HOME/
 USER root
-RUN mvn -f $APP_HOME/pom.xml/ package
+RUN mvn -f $APP_HOME/pom.xml/ clean package
 
 # actual container
 FROM adoptopenjdk/openjdk11:alpine-jre

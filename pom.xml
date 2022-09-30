@@ -215,7 +215,7 @@
                 <version>3.0.0-M7</version>
                 <configuration>
                     <excludes>
-                        <exclude>**/PageViewTest.java</exclude>
+                        <exclude>**/*Test.java</exclude>
                     </excludes>
                 </configuration>
             </plugin>

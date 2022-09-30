@@ -10,3 +10,4 @@ ENV ARTIFACT_NAME=nisum-inventory-api-0.0.1-SNAPSHOT.jar
 COPY --from=TEMP_BUILD_IMAGE /usr/app/target/$ARTIFACT_NAME /usr/app/
 EXPOSE 8080
 ENTRYPOINT exec java -jar ${ARTIFACT_NAME}
+ENTRYPOINT []

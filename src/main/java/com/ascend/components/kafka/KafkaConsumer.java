@@ -24,16 +24,16 @@ public class KafkaConsumer {
     public void consumeJson(@Payload Order data) throws InterruptedException {
         //manipulate the data within here
         System.out.println(data);
-        String order_status = data.getOrder_status();
+        String order_status = data.getOrder_status().toUpperCase();
 
         for(OrderItems order_item: data.getOrderItems()){
-            if("CREATE".equals(order_status)){
+            if("PENDING".equals(order_status)){
                 service.reserveStock(order_item.getUpc(), order_item.getQuantity());
             }
-            else if("SHIP".equals(order_status)){
+            else if("SHIPPED".equals(order_status)){
                 service.shipStock(order_item.getUpc(), order_item.getQuantity());
             }
-            else if("CANCEL".equals(order_status)){
+            else if("CANCELED".equals(order_status)){
                 service.cancelStock(order_item.getUpc(), order_item.getQuantity());
             }
             else{

@@ -1,7 +1,7 @@
 FROM maven:3.8.6-jdk-11-slim AS TEMP_BUILD_IMAGE
 COPY src /usr/app/src/
 COPY pom.xml /usr/app/
-RUN mvn -f /usr/app/pom.xml -DskipTests package
+RUN mvn -f /usr/app/pom.xml clean package -DskipTests
 
 # actual container
 FROM adoptopenjdk/openjdk11:alpine-jre

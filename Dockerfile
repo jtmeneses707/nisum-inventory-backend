@@ -1,4 +1,4 @@
-FROM maven:3.8.6-jdk-11-slim AS TEMP_BUILD_IMAGE
+FROM maven:3.8.6-openjdk-18-slim AS TEMP_BUILD_IMAGE
 COPY src /usr/app/src/
 COPY pom.xml /usr/app/
 RUN mvn -f /usr/app/pom.xml clean package -DskipTests

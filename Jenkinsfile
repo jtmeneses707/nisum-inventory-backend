@@ -1,6 +1,6 @@
 pipeline {
-    //agent { dockerfile true }
-    agent {label 'built-in'}
+    agent { dockerfile true }
+    //agent {label 'built-in'}
     stages {
         stage('Docker Build Image and Push') {
             //agent {label 'built-in'}
@@ -11,6 +11,7 @@ pipeline {
                     docker login --username $USERNAME --password $PASSWORD
                     docker build -t $USERNAME/nisum-inventory-backend-app:${env.BUILD_NUMBER} .
                     docker push $USERNAME/nisum-inventory-backend-app:${env.BUILD_NUMBER}
+                    docker image prune -f
                     docker logout
                     """
                 }

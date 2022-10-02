@@ -1,8 +1,8 @@
 pipeline {
-    agent {label 'built-in'}
+    agent { dockerfile true }
     stages {
         stage('Docker Build Image and Push') {
-            agent { dockerfile true }
+            agent {label 'built-in'}
             steps {
                 script {
                     //Using DockerHub as Container Image repo. Log in, build image, and then push it to DockerHub using credentials.

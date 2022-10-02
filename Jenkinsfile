@@ -5,13 +5,14 @@ pipeline {
         stage('Docker Build Image and Push') {
             //agent {label 'built-in'}
             steps {
-                script {
-                    //Using DockerHub as Container Image repo. Log in, build image, and then push it to DockerHub using credentials.
-                    docker.withRegistry('https://hub.docker.com/', 'dockerhub-creds') {
-                        def app = docker.build(ihuang12/nisum-inventory-backend-app)
-                        app.push("${env.BUILD_NUMBER}")
-                        app.push("latest")
-                    }
+                //Using DockerHub as Container Image repo. Log in, build image, and then push it to DockerHub using credentials.
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh """
+                    docker login --username $USERNAME --password $PASSWORD
+                    docker build -t $USERNAME/nisum-inventory-backend-app:${env.BUILD_NUMBER} .
+                    docker push $USERNAME/nisum-inventory-backend-app:${env.BUILD_NUMBER}
+                    docker logout
+                    """
                 }
                 echo '========== Continuous Integration ends here =========='
             }
